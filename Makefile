@@ -1,6 +1,9 @@
-.PHONY: build
+.PHONY: build clean
 
-.PHONY: hello
+build: clean
+	cd $(pkg); \
+	go build -o ../bin/$(pkg) .
 
-hello:
-	go build -o bin/hello hello/main.go
+clean:
+	rm -rf bin/*
+
