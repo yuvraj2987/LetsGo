@@ -1,9 +1,12 @@
 .PHONY: build clean
 
 build: clean
-	cd $(pkg); \
+	@cd $(pkg); \
 	go build -o ../bin/$(pkg) .
 
 clean:
-	rm -rf bin/*
+	@rm -rf bin/*
+
+run: build
+	bin/$(pkg)
 
