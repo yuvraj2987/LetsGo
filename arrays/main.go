@@ -2,8 +2,12 @@ package main
 
 import (
 	"fmt"
-	"slice_testing"
+	"sort"
 )
+
+func sortSlice(s []int) {
+	sort.Ints(s)
+}
 
 func main() {
 	fmt.Println("==== Testing array package =====")
@@ -38,10 +42,10 @@ func main() {
 		fmt.Println()
 	}
 
-	fmt.Prinln("Sort Slice int")
+	fmt.Println("Sort Slice int")
 	// Slice is delcared similar to array without fixed length
 	s1 := []int{3, 2, 1}
 	fmt.Println("Slice before sorting:", s1)
-	slice_testing.change(s1)
+	sortSlice(s1)
 	fmt.Println("Slice after sorting:", s1)
 }
