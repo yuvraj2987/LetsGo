@@ -23,3 +23,14 @@ func Print(head *Node) {
 	}
 	fmt.Println()
 }
+
+func Length(head *Node) int {
+	cur := head
+	count := 0
+	for cur != nil {
+		cur = cur.Next
+		count += 1
+	}
+
+	return count
+}
