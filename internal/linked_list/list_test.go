@@ -6,12 +6,12 @@ import (
 )
 
 func TestListPush(t *testing.T) {
-	root := new(Node)
-	fmt.Println("Root Ref: ", root)
-	Print(root)
-	Push(&root, 1)
-	Print(root)
-	Push(&root, 2)
-	Push(&root, 3)
-	Print(root)
+	var head *Node = nil
+	fmt.Println(head)
+	Print(head)
+	Push(&head, 1)
+	Print(head)
+	Push(&head, 2)
+	Push(&head, 3)
+	Print(head)
 }
