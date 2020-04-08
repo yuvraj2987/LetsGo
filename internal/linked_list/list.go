@@ -12,6 +12,19 @@ func Push(headRef **Node, data int) {
 	*headRef = &new_node
 }
 
+/**
+func Append(headRef **Node, data int) {
+	dummy_head := Node{0, nil}
+	dummy_head.Next = *headRef
+	tail := &dummy_head
+	for tail.Next != nil {
+		tail = tail.Next
+	}
+
+	Push(&(tail.Next), data)
+}
+**/
+
 func Print(head *Node) {
 	if head == nil {
 		fmt.Println("Emtpy List")
@@ -33,4 +46,19 @@ func Length(head *Node) int {
 	}
 
 	return count
+}
+
+func ListToSlice(head *Node) []int {
+	var lice []int
+	if head == nil {
+		return lice
+	}
+	lice = make([]int, 0, 1)
+	lice = append(lice, head.Data)
+	cur := head
+	for cur.Next != nil {
+		cur = cur.Next
+		lice = append(lice, cur.Data)
+	}
+	return lice
 }
