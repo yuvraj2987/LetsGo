@@ -1,7 +1,6 @@
 package linked_list
 
 import (
-	// "fmt"
 	"testing"
 )
 
@@ -63,6 +62,33 @@ func TestListToSlice(t *testing.T) {
 	actual_slice3 := ListToSlice(head)
 	if !equalSlices(actual_slice3, expected_slice3) {
 		t.Errorf("Actual list = %v expected list = %v", actual_slice3, expected_slice3)
+	}
+
+}
+
+func TestAppendList(t *testing.T) {
+	var head *Node = nil
+	Append(&head, 1)
+	// Test1: Append to emtpy
+	exp1 := []int{1}
+	ans1 := ListToSlice(head)
+	if !equalSlices(exp1, ans1) {
+		t.Errorf("Actual list = %v; expected list = %v", ans1, exp1)
+	}
+	// Test2: Append to single node
+	Append(&head, 2)
+	exp2 := []int{1, 2}
+	ans2 := ListToSlice(head)
+	if !equalSlices(exp2, ans2) {
+		t.Errorf("Actual list = %v; expected list = %v", ans2, exp2)
+	}
+
+	// Test3: Append to 2 element list
+	Append(&head, 3)
+	exp3 := []int{1, 2, 3}
+	ans3 := ListToSlice(head)
+	if !equalSlices(ans3, exp3) {
+		t.Errorf("Actual list = %v; expected list = %v", ans3, exp3)
 	}
 
 }

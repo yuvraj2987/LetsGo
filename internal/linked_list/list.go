@@ -12,18 +12,15 @@ func Push(headRef **Node, data int) {
 	*headRef = &new_node
 }
 
-/**
 func Append(headRef **Node, data int) {
-	dummy_head := Node{0, nil}
-	dummy_head.Next = *headRef
-	tail := &dummy_head
+	dummy_head := Node{0, *headRef}
+	var tail *Node = &dummy_head
 	for tail.Next != nil {
 		tail = tail.Next
 	}
-
 	Push(&(tail.Next), data)
+	*headRef = dummy_head.Next
 }
-**/
 
 func Print(head *Node) {
 	if head == nil {
