@@ -1,6 +1,9 @@
 package chapter1
 
-import "fmt"
+import (
+	"fmt"
+	"unicode"
+)
 
 func isUnique(str string) bool {
 	if len(str) == 0 {
@@ -50,8 +53,4 @@ func checkPermutation(s1 string, s2 string) {
 		}
 	}
 	return true
-}
-
-func main() {
-	fmt.Println("vim-go")
 }

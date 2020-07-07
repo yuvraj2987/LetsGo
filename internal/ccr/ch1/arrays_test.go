@@ -22,15 +22,15 @@ func TestIsUnique(t *testing.T) {
 
 func TestCheckPermutation(t *testing.T) {
 	tests := []struct {
-		s1 string
-		s2 string
+		s1  string
+		s2  string
 		ans bool
 	}{
 		{"a", "a", true},
 		{"ab", "ba", true},
 		{"abcd", "efgh", false},
 		{"abba", "bbaa", false},
-		{"abc", "abcd", false}},
+		{"abc", "abcd", false}}
 
 	for _, test := range tests {
 		if checkPermutation(test.s1, test.s2) != test.ans {
@@ -39,3 +39,24 @@ func TestCheckPermutation(t *testing.T) {
 	}
 
 }
+
+/**
+
+func TestUrlify(t *testing.T) {
+	r1 := []rune("Hi John")
+
+	tests := []struct {
+		s1 []rune
+		s2 []rune
+	}{
+		{},
+		{"abc", "abcd", false}}
+
+	for _, test := range tests {
+		if checkPermutation(test.s1, test.s2) != test.ans {
+			t.Errorf("IsUnique Test failed for %s", test.str)
+		}
+	}
+
+}
+**/
