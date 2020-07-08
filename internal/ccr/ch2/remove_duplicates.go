@@ -1,6 +1,6 @@
 package linked_list
 
-func removeDuplicates(head *Node) (head *Node) {
+func removeDuplicates(head *Node) {
 	if head == nil {
 		return
 	}
@@ -12,9 +12,9 @@ func removeDuplicates(head *Node) (head *Node) {
 
 	cur1 := head
 
-	for (cur1 != nil) || (cur1.Next != nil) {
+	for cur1 != nil && cur1.Next != nil {
 		cur2 := cur1
-		for cur2.Next != nil {
+		for cur2 != nil && cur2.Next != nil {
 			next2 := cur2.Next
 			if cur1.Data == next2.Data {
 				// Duplicate found

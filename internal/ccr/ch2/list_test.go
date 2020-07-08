@@ -61,7 +61,91 @@ func TestListToSlice(t *testing.T) {
 	expected_slice3 := []int{1, 2, 3}
 	actual_slice3 := ListToSlice(head)
 	if !equalSlices(actual_slice3, expected_slice3) {
-		t.Errorf("Actual list = %v expected list = %v", actual_slice3, expected_slice3)
+		t.Errorf("test1 failed")
+	}
+
+}
+
+func TestRemoveDuplicates(t *testing.T) {
+	var head *Node = nil
+	// Test1: Emtpy list
+	removeDuplicates(head)
+
+	if head != nil {
+		t.Errorf("Test1: Failed")
+	}
+
+	// Test2: Single element list
+	Append(&head, 1)
+	removeDuplicates(head)
+	exp1 := []int{1}
+	ans1 := ListToSlice(head)
+	if !equalSlices(exp1, ans1) {
+		t.Errorf("Actual list = %v; expected list = %v", ans1, exp1)
+	}
+
+	// Test3: 3 elements
+	Append(&head, 1)
+	Append(&head, 2)
+	before_exp2 := []int{1, 1, 2}
+	before_list2 := ListToSlice(head)
+	if !equalSlices(before_exp2, before_list2) {
+		t.Errorf("Actual list = %v; expected list = %v", before_list2, before_exp2)
+	}
+	removeDuplicates(head)
+	after_exp2 := []int{1, 2}
+	after_list2 := ListToSlice(head)
+	if !equalSlices(after_exp2, after_list2) {
+		t.Errorf("Actual list = %v; expected list = %v", after_list2, after_exp2)
+	}
+
+	// Test4: 3 elements last element is duplicate
+	head2 := Node{3, nil}
+	headRef2 := &head2
+	Append(&headRef2, 2)
+	Append(&headRef2, 2)
+	before_exp4 := []int{3, 2, 2}
+	before_list4 := ListToSlice(headRef2)
+	if !equalSlices(before_exp4, before_list4) {
+		t.Errorf("Error while creating test list 4")
+		t.Errorf("Actual list = %v; expected list = %v", before_list4, before_exp4)
+	}
+	removeDuplicates(headRef2)
+	after_exp4 := []int{3, 2}
+	after_list4 := ListToSlice(headRef2)
+
+	if !equalSlices(after_exp4, after_list4) {
+		t.Errorf("Actual list = %v; expected list = %v", after_list4, after_exp4)
+	}
+	// Test5: 3 elements 1st and last is duplicate
+	Append(&headRef2, 3)
+	before_exp5 := []int{3, 2, 3}
+	before_list5 := ListToSlice(headRef2)
+	if !equalSlices(before_exp5, before_list5) {
+		t.Errorf("Error while creating test list 5")
+		t.Errorf("Actual list = %v; expected list = %v", before_list5, before_exp5)
+	}
+	removeDuplicates(headRef2)
+	after_exp5 := []int{3, 2}
+	after_list5 := ListToSlice(headRef2)
+
+	if !equalSlices(after_exp5, after_list5) {
+		t.Errorf("Actual list = %v; expected list = %v", after_list5, after_exp5)
+	}
+
+	// Test6: No removal
+	Append(&headRef2, 1)
+	Append(&headRef2, 5)
+	before_exp6 := []int{3, 2, 1, 5}
+	before_list6 := ListToSlice(headRef2)
+	if !equalSlices(before_exp6, before_list6) {
+		t.Errorf("Error while creating test list 6")
+		t.Errorf("Actual list = %v; expected list = %v", before_list6, before_exp6)
+	}
+	removeDuplicates(headRef2)
+	after_list6 := ListToSlice(headRef2)
+	if !equalSlices(before_exp6, after_list6) {
+		t.Errorf("Actual list = %v; expected list = %v", before_list6, before_exp6)
 	}
 
 }
