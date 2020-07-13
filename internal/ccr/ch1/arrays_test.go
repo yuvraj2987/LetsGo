@@ -29,12 +29,30 @@ func TestCheckPermutation(t *testing.T) {
 		{"a", "a", true},
 		{"ab", "ba", true},
 		{"abcd", "efgh", false},
-		{"abba", "bbaa", false},
+		{"abba", "bbaa", true},
 		{"abc", "abcd", false}}
 
 	for _, test := range tests {
 		if checkPermutation(test.s1, test.s2) != test.ans {
-			t.Errorf("IsUnique Test failed for %s", test.str)
+			t.Errorf("IsUnique Test failed for s1=%s and s2=%s", test.s1, test.s2)
+		}
+	}
+
+}
+
+func TestIsPalinPermutation(t *testing.T) {
+	tests := []struct {
+		s   string
+		ans bool
+	}{
+		{"", false},
+		{"abc", false},
+		{"Tact Coa", true},
+		{"aba", true}}
+
+	for _, test := range tests {
+		if IsPalinPermutation(test.s) != test.ans {
+			t.Errorf("Test failed for string %s", test.s)
 		}
 	}
 

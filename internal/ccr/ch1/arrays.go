@@ -1,7 +1,6 @@
 package chapter1
 
 import (
-	"fmt"
 	"unicode"
 )
 
@@ -22,7 +21,7 @@ func isUnique(str string) bool {
 	return true
 }
 
-func checkPermutation(s1 string, s2 string) {
+func checkPermutation(s1 string, s2 string) bool {
 	if len(s1) != len(s2) {
 		return false
 	}
@@ -47,10 +46,45 @@ func checkPermutation(s1 string, s2 string) {
 		}
 	}
 	// check all key vals are set to zero
-	for k, v := range aMap {
+	for _, v := range aMap {
 		if v != 0 {
 			return false
 		}
 	}
 	return true
+}
+
+func IsPalinPermutation(s string) bool {
+	if len(s) <= 0 {
+		return false
+	}
+
+	rs := []rune(s)
+	aMap := make(map[rune]int)
+	for _, ch := range rs {
+		if !unicode.IsSpace(ch) {
+			ch = unicode.ToLower(ch)
+			_, exists := aMap[ch]
+			if exists {
+				aMap[ch]++
+			} else {
+				aMap[ch] = 1
+			}
+
+		} // end of non space chars
+	} // end of for loop
+
+	even_chars := 0
+	odd_chars := 0
+
+	for _, v := range aMap {
+		if v%2 == 0 {
+			even_chars++
+		} else {
+			odd_chars++
+		}
+	}
+
+	return odd_chars <= 1
+
 }
