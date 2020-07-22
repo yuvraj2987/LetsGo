@@ -88,3 +88,53 @@ func IsPalinPermutation(s string) bool {
 	return odd_chars <= 1
 
 }
+
+func oneEdit(s1, s2 string) bool {
+	len1 := len(s1)
+	len2 := len(s2)
+	len_diff := len1 - len2
+	if len_diff < 0 {
+		len_diff = -len_diff
+	}
+
+	if len_diff >= 2 {
+		return false
+	}
+
+	m := make(map[rune]int)
+	for _, ch := range s1 {
+		if count, exists := m[ch]; exists {
+			m[ch] = count + 1
+		} else {
+			m[ch] = 1
+		}
+	}
+
+	var extraChars int
+
+	for _, ch := range s2 {
+		if val, exists := m[ch]; exists {
+			if val <= 1 {
+				delete(m, ch)
+			} else {
+				m[ch] = val - 1
+			}
+
+		} else {
+			extraChars++
+		}
+	}
+
+	// len1 > len2
+	if len(m) >= 2 {
+		return false
+	}
+
+	// len1 <= len2
+	if extraChars >= 2 {
+		return false
+	}
+
+	return true
+
+}
