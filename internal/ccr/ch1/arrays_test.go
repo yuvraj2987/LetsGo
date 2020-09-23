@@ -58,6 +58,27 @@ func TestIsPalinPermutation(t *testing.T) {
 
 }
 
+func TestOneAwayEdit(t *testing.T) {
+	tests := []struct {
+		s1  string
+		s2  string
+		ans bool
+	}{
+		{"pale", "ple", true},
+		{"pales", "pale", true},
+		{"pale", "bale", true},
+		{"pale", "bake", false},
+		{"abcd", "abcdef", false},
+		{"aaab", "aabb", true}}
+
+	for _, test := range tests {
+		if oneEdit(test.s1, test.s2) != test.ans {
+			t.Errorf("Test failed for strings s1 = %s and s2 = %s", test.s1, test.s2)
+		}
+	}
+
+}
+
 /**
 
 func TestUrlify(t *testing.T) {

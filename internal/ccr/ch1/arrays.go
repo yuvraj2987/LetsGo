@@ -110,31 +110,30 @@ func oneEdit(s1, s2 string) bool {
 		}
 	}
 
-	var extraChars int
+	// store number of extra chars in each string
+	var extraCharsS1, extraCharsS2 int
 
 	for _, ch := range s2 {
-		if val, exists := m[ch]; exists {
-			if val <= 1 {
+		if count, exists := m[ch]; exists {
+			if count <= 1 {
 				delete(m, ch)
 			} else {
-				m[ch] = val - 1
+				m[ch] = count - 1
 			}
-
 		} else {
-			extraChars++
+			extraCharsS2++
 		}
 	}
 
-	// len1 > len2
-	if len(m) >= 2 {
+	extraCharsS1 = len(m)
+
+	if extraCharsS1 >= 2 {
 		return false
 	}
 
-	// len1 <= len2
-	if extraChars >= 2 {
+	if extraCharsS2 >= 2 {
 		return false
 	}
-
 	return true
 
 }
